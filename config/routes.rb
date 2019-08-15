@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   root "static_page#home"
 
   get "sessions/new"
@@ -26,6 +27,9 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+  end
+  resources :microposts do
+    resources :comments
   end
 
 end

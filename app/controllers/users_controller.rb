@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.page(params[:page]).per Settings.pages_default
+    # @comments = @user.microposts.comments.all
+    # @comment = @user.microposts.comments.build
   end
 
   def create
@@ -56,7 +58,7 @@ class UsersController < ApplicationController
     end
   end
 
-   def following
+  def following
     @title = "Following"
     @user  = User.find_by(params[:id])
     @users = @user.following.page(params[:page]).per Settings.pages_default
@@ -70,7 +72,7 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  private
+private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -79,14 +81,12 @@ class UsersController < ApplicationController
   def load_users
     @user = User.find_by id: params[:id]
     return if @user
-
     redirect_to root_url
   end
 
   def correct_user
     @user = User.find_by id: params[:id]
     return if @user == current_user
-
     redirect_to root_url
     flash[:danger] = t "not_permited"
   end

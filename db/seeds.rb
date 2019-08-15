@@ -14,7 +14,7 @@ User.create!(name:  "123321@gmail.com",
              activated: true,
              activated_at: Time.zone.now)
 
-99.times do |n|
+39.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -27,7 +27,7 @@ User.create!(name:  "123321@gmail.com",
 end
 
 users = User.order(:created_at).take(6)
-50.times do
+30.times do
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.microposts.create!(content: content) }
 end
@@ -38,3 +38,10 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+microposts = Micropost.all
+  3.times do |i|
+    r = rand 30
+    microposts.each{ |micropost|  micropost.comments.create!(user_id: r,body: Faker::Lorem.question)}
+    # c.save
+  end
