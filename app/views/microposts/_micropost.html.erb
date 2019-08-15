@@ -1,0 +1,24 @@
+<li id="micropost-<%= micropost.id %>">
+  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+  <span class="content"><%= micropost.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    <%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?" } %>
+  </span>
+  <span>
+    <h3>Comments</h3>
+    <ol class="comments">
+    <%= render micropost.comments %>
+    </ol>
+  </span>
+  <% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="comment_form">
+        <%= render 'shared/comment_form' %>
+      </section>
+    </aside>
+  </div>
+  <% end %>
+</li>

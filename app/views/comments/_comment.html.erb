@@ -1,0 +1,20 @@
+ <li id="comment-<%= comment.id %>">
+  <%= link_to gravatar_for(comment.user, size: 50), comment.micropost.user %>
+  <span class="user"><%= link_to comment.user.name, comment.user %></span>
+  <span class="content">
+    <%= comment.body %>
+  </span>
+  <span class="timestamp">
+    <%=raw t(".time_ago", time:time_ago_in_words(comment.created_at)) %>
+  </span>
+
+  <% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="comment_form">
+        <%= render "shared/comment_form",micropost: comment.micropost %>
+      </section>
+    </aside>
+  </div>
+  <% end %>
+</li>
