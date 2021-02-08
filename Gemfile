@@ -21,7 +21,7 @@ gem "jquery-rails", "~> 4.3", ">= 4.3.1"
 gem "kaminari", "~> 1.1", ">= 1.1.1"
 gem "kaminari-bootstrap", "~> 3.0", ">= 3.0.1"
 gem 'faker', '~> 1.9', '>= 1.9.6'
-gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick', '~> 4.9', '>= 4.9.5'
 
 group :development, :test do
